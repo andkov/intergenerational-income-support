@@ -1,0 +1,203 @@
+# .gitignore for Intergenerational Income Support Research
+
+# ============================================================================
+# Private and Sensitive Data
+# ============================================================================
+# Administrative data must never be committed to version control
+data-private/
+*.csv
+*.xlsx
+*.xls
+*.sav
+*.dta
+*.rds
+*.rda
+*.RData
+
+# Personal identifiers or sensitive content
+*_private*
+*_confidential*
+*_sensitive*
+
+# ============================================================================
+# R and RStudio Files
+# ============================================================================
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+*.Rproj.user
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# R Environment Variables
+.Renviron
+
+# ============================================================================
+# Analysis Outputs (can be regenerated)
+# ============================================================================
+# Generated reports and figures
+analysis/outputs/
+analysis/figures/
+analysis/tables/
+reports/
+figures/
+plots/
+*.html
+*.pdf
+*.docx
+*.pptx
+
+# Log files
+logs/
+*.log
+
+# Temporary analysis files
+temp/
+tmp/
+scratch/
+
+# ============================================================================
+# System and Editor Files
+# ============================================================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Vi/Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# VS Code
+.vscode/
+
+# ============================================================================
+# Package Management
+# ============================================================================
+# Packrat
+packrat/lib*/
+packrat/src/
+
+# renv
+renv/library/
+renv/staging/
+
+# ============================================================================
+# Configuration (keep templates, ignore local configs)
+# ============================================================================
+# Local configuration overrides
+config-local.yml
+.env
+.env.local
+
+# Database connections
+*.dsn
+connections.txt
+
+# Credentials
+credentials.yml
+api_keys.txt
+
+# ============================================================================
+# Documentation Build
+# ============================================================================
+# pkgdown
+docs/
+_site/
+
+# ============================================================================
+# Special Project Files
+# ============================================================================
+# Keep directory structure but ignore content in certain folders
+data-private/*
+!data-private/.gitkeep
+!data-private/README.md
+
+# AI interaction logs (keep structure, ignore detailed logs)
+ai/cache/
+ai/temp/
+
+# Large intermediate files
+*.rds
+*.feather
+*.parquet
+cache/
+cached_data/
+
+# ============================================================================
+# Allow Important Infrastructure Files
+# ============================================================================
+!.gitignore
+!README.md
+!config.yml
+!flow.R
+!*.Rproj
+!ai/README.md
+!ai/mission.md
+!ai/glossary.md
+!ai/onboarding-ai.md
+!ai/logbook.md
