@@ -1,0 +1,106 @@
+default:
+  project_name                                        : "intergenerational-income-support"
+  schema_name                                         : "income_support_research"
+  
+  # Directory paths
+  directory_data_private                              : "data-private"
+  directory_data_public                               : "data-public"
+  directory_output                                    : !expr strftime(Sys.time(), "data-private/derived/%Y-%m-%d")
+  directory_analysis                                  : "analysis"
+  directory_manipulation                              : "manipulation"
+  directory_scripts                                   : "scripts"
+  
+  # File paths
+  path_output_summary                                 : !expr strftime(Sys.time(), "data-private/derived/%Y-%m-%d/_summary.csv")
+  path_output_description                             : !expr strftime(Sys.time(), "data-private/derived/%Y-%m-%d/_description.md")
+  path_log_flow                                       : !expr strftime(Sys.time(), "data-private/logs/%Y/%Y-%m/flow-%Y-%m-%d--%H-%M-%S.log")
+  
+  # Research parameters
+  study_start_year                                    : 1995
+  study_end_year                                      : 2024
+  child_age_cutoff                                    : 18
+  follow_up_years                                     : 10
+  minimum_exposure_months                             : 6
+  
+  # Validation ranges and patterns
+  range_birth_year                                    : !expr c(1977L, 2006L)  # Children born 1977-2006 for 18+ follow-up
+  range_is_start_date                                 : !expr c(as.Date("1995-01-01"), as.Date("2024-12-31"))
+  range_family_size                                   : !expr c(1L, 15L)
+  minimum_follow_up_days                              : 365
+  
+  # Privacy and security
+  minimum_cell_size                                   : 5   # Minimum count for reporting
+  suppress_small_cells                                : true
+  anonymize_identifiers                               : true
+  
+  # Analysis parameters
+  survival_analysis_method                            : "cox"
+  clustering_method                                   : "family"
+  missing_data_threshold                              : 0.20
+  significance_level                                  : 0.05
+  confidence_level                                    : 0.95
+  
+  # Reporting parameters
+  max_age_display                                     : 65
+  geographic_aggregation_level                        : "health_region"
+  temporal_aggregation                                : "annual"
+  
+  # Model specifications
+  baseline_covariates                                 :
+    - "birth_year"
+    - "sex" 
+    - "family_structure"
+    - "geographic_region"
+    - "economic_context"
+  
+  exposure_variables                                  :
+    - "parental_is_duration"
+    - "child_age_at_first_exposure"
+    - "exposure_intensity"
+    - "family_transitions"
+  
+  outcome_variables                                   :
+    - "adult_is_onset"
+    - "adult_is_duration"
+    - "employment_outcomes"
+    - "education_completion"
+  
+  # Geographic regions (Alberta health regions)
+  geographic_regions                                  :
+    - "Calgary Zone"
+    - "Central Zone"
+    - "Edmonton Zone"
+    - "North Zone"
+    - "South Zone"
+  
+  # Time periods for context analysis
+  policy_periods                                      :
+    - name: "Pre-reform"
+      start_date: "1995-01-01"
+      end_date: "2002-12-31"
+    - name: "Reform period"
+      start_date: "2003-01-01"
+      end_date: "2010-12-31"
+    - name: "Post-reform"
+      start_date: "2011-01-01"
+      end_date: "2024-12-31"
+  
+  # Data quality thresholds
+  data_quality                                        :
+    maximum_missing_rate                              : 0.15
+    minimum_record_completeness                       : 0.80
+    temporal_consistency_threshold                    : 0.95
+    family_linkage_confidence                         : 0.90
+  
+  # Output specifications
+  figure_format                                       : "png"
+  figure_dpi                                          : 300
+  figure_width                                        : 8
+  figure_height                                       : 6
+  table_format                                        : "html"
+  
+  # Computational parameters
+  parallel_processing                                 : true
+  max_cores                                           : !expr parallel::detectCores() - 1
+  memory_limit_gb                                     : 16
+  chunk_size                                          : 10000
